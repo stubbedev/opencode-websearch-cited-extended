@@ -30,7 +30,7 @@ Full example see [example_output.md](./example_output.md).
 
 Add `opencode-websearch-cited` to your `~/.config/opencode/opencode.json`.
 
-**IMPORTANT**: Put `opencode-websearch-cited` LAST in the `plugin` list to avoid impacting other plugins' auth process.
+**IMPORTANT**: Put `opencode-websearch-cited` LAST in the `plugin` list to avoid impacting other plugins' auth process, and disable the plugin before start any auth process.
 
 ```json
 {

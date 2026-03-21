@@ -1,5 +1,5 @@
 import type { Auth as ProviderAuth } from "@opencode-ai/sdk";
-import codexPrompt from "./codex_prompt.md" with { type: "text" };
+import codexPrompt from "./codex_prompt.txt" with { type: "text" };
 import type { GetAuth, WebsearchClient } from "./types.ts";
 
 type OpenAIReasoningConfig = {
