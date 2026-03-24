@@ -131,7 +131,8 @@ describe("WebsearchCitedPlugin", () => {
 
 	beforeEach(() => {
 		fetchMock = vi.spyOn(globalThis, "fetch");
-		fetchMock.mockRejectedValue(new Error("fetch mock not configured"));
+		fetchMock.mockImplementation((() =>
+			Promise.reject(new Error("fetch mock not configured"))) as unknown as typeof fetch);
 	});
 
 	afterEach(() => {
@@ -258,7 +259,7 @@ describe("WebsearchCitedPlugin", () => {
 
 	it("returns provider failure details", async () => {
 		const failure = new Error("API Failure");
-		fetchMock.mockRejectedValueOnce(failure);
+		fetchMock.mockImplementationOnce((() => Promise.reject(failure)) as unknown as typeof fetch);
 
 		const { hooks, tool } = await createEnv(WEBSEARCH_CONFIG);
 		await invokeAuthLoader(hooks, "google", { type: "api", key: "stored-key" });
