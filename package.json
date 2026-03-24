@@ -1,5 +1,5 @@
 {
-  "name": "opencode-websearch-cited",
+  "name": "opencode-websearch-cited-extended",
   "version": "1.3.0",
   "description": "An OpenCode plugin that provides LLM-grounded web search with citations.",
   "type": "module",
@@ -15,11 +15,11 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ghoulr/opencode-websearch-cited"
+    "url": "https://github.com/stubbedev/opencode-websearch-cited-extended"
   },
-  "homepage": "https://github.com/ghoulr/opencode-websearch-cited#readme",
+  "homepage": "https://github.com/stubbedev/opencode-websearch-cited-extended#readme",
   "bugs": {
-    "url": "https://github.com/ghoulr/opencode-websearch-cited/issues"
+    "url": "https://github.com/stubbedev/opencode-websearch-cited-extended/issues"
   },
   "keywords": [
     "opencode",
