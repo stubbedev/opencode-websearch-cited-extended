@@ -7,6 +7,7 @@ This plugin exposes a web search capability as an OpenCode custom tool, so your 
 ## Features
 
 - `websearch_cited` tool backed by the builtin web search tool from:
+  - [Anthropic](https://docs.anthropic.com/en/docs/build-with-claude/tool-use/web-search-tool)
   - [Google](https://ai.google.dev/gemini-api/docs/google-search)
   - [OpenAI](https://platform.openai.com/docs/guides/tools-web-search)
   - [OpenRouter](https://openrouter.ai/docs/guides/features/plugins/web-search)
@@ -28,21 +29,21 @@ Full example see [example_output.md](./example_output.md).
 
 ## Installation
 
-Add `opencode-websearch-cited` to your `~/.config/opencode/opencode.json`.
+Add `opencode-websearch-cited-extended` to your `~/.config/opencode/opencode.json`.
 
-**IMPORTANT**: Put `opencode-websearch-cited` LAST in the `plugin` list to avoid impacting other plugins' auth process, and disable the plugin before start any auth process.
+**IMPORTANT**: Put `opencode-websearch-cited-extended` LAST in the `plugin` list to avoid impacting other plugins' auth process, and disable the plugin before start any auth process.
 
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
   "plugin": [
     "...other plugins",
-    "opencode-websearch-cited@1.2.0"
+    "github:stubbedev/opencode-websearch-cited-extended"
   ]
 }
 ```
 
-OpenCode does not upgrade plugins automatically, so you need to pin the version once the plugin upgraded.
+Omitting the version always pulls the latest commit from the default branch. Pin with `@<tag>` for stability.
 
 As long as the plugin is enabled and the provider auth is configured, any OpenCode agent that can use tools will be able to call `websearch_cited` when it needs web search with citations.
 
@@ -62,17 +63,24 @@ Set a `websearch_cited` model in your OpenCode config (required)
 {
   "$schema": "https://opencode.ai/config.json",
   "provider": {
+    "anthropic": {
+      "options": {
+        "websearch_cited": {
+          "model": "claude-haiku-4-5"
+        }
+      }
+    },
     "openrouter": {
       "options": {
         "websearch_cited": {
-          "model": "x-ai/grok-4.1-fast"
+          "model": "anthropic/claude-haiku-4-5"
         }
       }
     },
     "openai": {
       "options": {
         "websearch_cited": {
-          "model": "gpt-5.2"
+          "model": "gpt-4o-mini"
         }
       }
     },
@@ -87,7 +95,7 @@ Set a `websearch_cited` model in your OpenCode config (required)
 }
 ```
 
-If you specify multiple `websearch_cited.models` fields in your `opencode.json`, the plugin scans `provider` entries in order and uses the first provider that contains `options.websearch_cited.model`. **The order matters**.
+If you specify multiple `websearch_cited` entries in your `opencode.json`, the plugin scans `provider` entries in order and uses the first provider that contains `options.websearch_cited.model`. **The order matters**.
 
 If auth or model config is missing, `websearch_cited` throws an error and OpenCode will display the message.
 
